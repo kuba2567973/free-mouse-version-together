@@ -2455,7 +2455,7 @@ G2L["f9"]["Thickness"] = 0.8;
 G2L["f9"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
 
--- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.martoma
+-- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.wersup
 G2L["fa"] = Instance.new("TextButton", G2L["1d"]);
 G2L["fa"]["TextWrapped"] = true;
 G2L["fa"]["BorderSizePixel"] = 0;
@@ -2470,23 +2470,23 @@ G2L["fa"]["BackgroundTransparency"] = 0.75;
 G2L["fa"]["Size"] = UDim2.new(0.0409, 0, 0.059, 0);
 G2L["fa"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["fa"]["Text"] = [[We Rise Up]];
-G2L["fa"]["Name"] = [[martoma]];
+G2L["fa"]["Name"] = [[wersup]];
 G2L["fa"]["Position"] = UDim2.new(0.79663, 0, 0.43092, 0);
 
 
--- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.martoma.UICorner
+-- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.wersup.UICorner
 G2L["fb"] = Instance.new("UICorner", G2L["fa"]);
 G2L["fb"]["CornerRadius"] = UDim.new(0.2, 0);
 
 
--- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.martoma.UIStroke
+-- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.wersup.UIStroke
 G2L["fc"] = Instance.new("UIStroke", G2L["fa"]);
 G2L["fc"]["Transparency"] = 0.53;
 G2L["fc"]["Thickness"] = 0.8;
 G2L["fc"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
 
--- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.martoma.LocalScript
+-- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.wersup.LocalScript
 G2L["fd"] = Instance.new("LocalScript", G2L["fa"]);
 
 
@@ -5790,7 +5790,7 @@ local script = G2L["f1"];
 	end)
 end;
 task.spawn(C_f1);
--- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.martoma.LocalScript
+-- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.wersup.LocalScript
 local function C_fd()
 local script = G2L["fd"];
 	script.Parent.Activated:Connect(function()
@@ -6410,12 +6410,12 @@ local script = G2L["14f"];
 	-- KONFIGURACE OBLOHY
 	local Lighting = game:GetService("Lighting")
 	local skyConfig = {
-		Back  = "http://www.roblox.com",
-		Down  = "http://www.roblox.com",
-		Front = "http://www.roblox.com",
-		Left  = "http://www.roblox.com",
-		Right = "http://www.roblox.com",
-		Up    = "http://www.roblox.com"
+		Back  = "http://www.roblox.com/asset/?id=4498828382",
+		Down  = "http://www.roblox.com/asset/?id=4498828812",
+		Front = "http://www.roblox.com/asset/?id=4498829917",
+		Left  = "http://www.roblox.com/asset/?id=4498830911",
+		Right = "http://www.roblox.com/asset/?id=4498830417",
+		Up    = "http://www.roblox.com/asset/?id=4498831746"
 	}
 	
 	-- FUNKCE PRO ZMĚNU THEME (Bez lagů)
@@ -6469,8 +6469,8 @@ local script = G2L["14f"];
 		newSky.SkyboxLf = skyConfig.Left
 		newSky.SkyboxRt = skyConfig.Right
 		newSky.SkyboxUp = skyConfig.Up
-		newSky.SunTextureId = ""
-		newSky.SunAngularSize = 0
+		newSky.SunTextureId = "rbxasset://sky/sun.jpg"
+		newSky.SunAngularSize = 21
 		newSky.Parent = Lighting
 	
 		Lighting.Brightness = 2
