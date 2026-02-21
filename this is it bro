@@ -5866,7 +5866,7 @@ local script = G2L["11e"];
 	local speedInput = button.Parent:WaitForChild("FlSped")
 	
 	-- Na začátku schováme TextBox
-	speedInput.Visible = false
+	speedInput.Visible = true
 	
 	local flying = false
 	local flyActive = false
