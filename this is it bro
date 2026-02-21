@@ -4911,28 +4911,43 @@ local script = G2L["b9"];
 	-- AIMBOT LOOP
 	-----------------------------------
 	RS.RenderStepped:Connect(function()
-		if not aim_On or not aiming then return end
+		if not aim_On or not aiming then 
+			lockedTarget = nil
+			return 
+		end
 	
-		-- Výběr cíle
-		if aim_WC then
-			if not lockedTarget or not lockedTarget.Parent or not lockedTarget:IsDescendantOf(workspace) then
-				lockedTarget = getTarget()
+		-- 1. OVĚŘENÍ AKTUÁLNÍHO CÍLE (Pokud nějaký máme)
+		if lockedTarget then
+			local char = lockedTarget.Parent
+			local humanoid = char and char:FindFirstChildOfClass("Humanoid")
+	
+			-- Kontrola: Je naživu? Má ForceField? Je za zdí?
+			local isInvalid = not char 
+				or not humanoid 
+				or humanoid.Health <= 0 
+				or hasForceField(char) 
+				or not wallCheck(char, lockedTarget)
+	
+			if isInvalid then
+				lockedTarget = nil -- Zruš zámek, pokud cíl nesplňuje podmínky
 			end
-		else
+		end
+	
+		-- 2. HLEDÁNÍ NOVÉHO CÍLE (Pokud nemáme zámek)
+		if not lockedTarget then
 			lockedTarget = getTarget()
 		end
 	
+		-- 3. SAMOTNÉ MÍŘENÍ
 		if lockedTarget then
 			local targetPos = lockedTarget.Position
 	
-			-- 1. OTOČENÍ KAMERY (To už máš)
+			-- Otočení kamery
 			cam.CFrame = CFrame.new(cam.CFrame.Position, targetPos)
 	
-			-- 2. OTOČENÍ POSTAVY (To co ti chybělo)
+			-- Otočení postavy (pouze horizontálně)
 			if lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") then
 				local hrp = lp.Character.HumanoidRootPart
-	
-				-- Vytvoříme novou orientaci, která se dívá na cíl, ale zůstane stát rovně (neohýbá postavu do země)
 				local lookAt = Vector3.new(targetPos.X, hrp.Position.Y, targetPos.Z)
 				hrp.CFrame = CFrame.new(hrp.Position, lookAt)
 			end
