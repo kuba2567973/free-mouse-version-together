@@ -5939,90 +5939,28 @@ task.spawn(C_12c);
 -- StarterGui.HHHHAAAACCCCKKKK.GUI.GUI3.nrm.nrm
 local function C_136()
 local script = G2L["136"];
+	-- REFERENCE
 	local frm1 = script.Parent.Parent.Parent.thm
 	local frm2 = frm1.shw
 	local frm4 = frm1.TextLabel2
 	local frm5 = frm1.Parent.GUI3
 	local bar = script.Parent.Parent.Parent.Bar
 	local fs = script.Parent.Parent.Parent.Parent.fs
-	
 	local folder2 = script.Parent.Parent.Parent.crystals
 	local br = script.Parent.Parent.Parent.Parent.GUI.txbas.barr
 	local frm = script.Parent.Parent.Parent.Parent.GUI
 	local but = script.Parent.Parent.nrm
 	local folder = script.Parent.Parent.Parent.Parent.GUI.txbas
-	local targetColor = Color3.fromRGB(48, 48, 48)
-	local targetColor2 = Color3.fromRGB(255, 255, 255)
 	local grs2 = frm.Parent.GUI5.grs
 	local grs12 = frm.txbas.GUI12
 	
-	but.Activated:Connect(function()
-		grs12.Visible = false
-		fs.BackgroundColor3 = targetColor
-		fs.TextColor3 = targetColor2
-		frm4.Text = "Theme: " .. "Normal"
-		frm5.Visible = false
-		grs2.Visible = false
-		frm.BackgroundTransparency = 0.5
-		frm2.TextColor3 = Color3.fromRGB(255, 255, 255)
-		frm2.BackgroundColor3 = Color3.fromRGB(94, 94, 94)
-		frm4.TextColor3 = Color3.fromRGB(255, 255, 255)
-		frm5.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
-		frm1.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
-		bar.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
-		br.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
-		frm.BackgroundColor3 = Color3.fromRGB(94, 94, 94)
-		for _, child in ipairs(folder:GetChildren()) do
-			if child:IsA("TextButton") then 
-				child.BackgroundColor3 = targetColor
-				child.TextColor3 = targetColor2
-				for _, child in ipairs(folder:GetChildren()) do
-					if child:IsA("TextBox") then 
-						child.BackgroundColor3 = targetColor
-						child.TextColor3 = targetColor2
-						for _, child in ipairs(folder:GetChildren()) do
-							if child:IsA("TextLabel") then 
-								child.BackgroundColor3 = targetColor
-								child.TextColor3 = targetColor2
-								for _, child in ipairs(folder:GetChildren()) do
-									if child:IsA("TextLabel") then 
-										child.BackgroundColor3 = targetColor
-										for _, child in ipairs(folder2	:GetChildren()) do
-											if child:IsA("Frame") then 
-												child.Visible = false
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	end)
+	-- NASTAVENÍ BAREV (Normal Theme)
+	local targetColor = Color3.fromRGB(48, 48, 48)
+	local targetColor2 = Color3.fromRGB(255, 255, 255)
+	local bgGray = Color3.fromRGB(94, 94, 94)
 	
-	but.MouseEnter:Connect(function()
-		but:TweenSize(UDim2.new(0.982, 0, 0.239, 0),
-			"InOut",
-			"Sine",
-			0.2,
-			true
-		)
-	end)
-	
-	but.MouseLeave:Connect(function()
-		but:TweenSize(UDim2.new(0.942, 0 ,0.192, 0),
-			"InOut",
-			"Sine",
-			0.2,
-			true
-		)
-	end)
-	
-	local button = but
+	-- KONFIGURACE OBLOHY (Normal)
 	local Lighting = game:GetService("Lighting")
-	
 	local skyConfig = {
 		Back  = "rbxassetid://15541546307",
 		Down  = "rbxassetid://15541545125",
@@ -6032,129 +5970,105 @@ local script = G2L["136"];
 		Up    = "rbxassetid://15541544752"
 	}
 	
-	button.MouseButton1Click:Connect(function()
-		-- 1. Odstranění starých prvků, které způsobují "glow" (Atmosféra a SunRays)
+	-- HLAVNÍ FUNKCE PŘI KLIKNUTÍ
+	but.Activated:Connect(function()
+		-- 1. Základní UI reset
+		grs12.Visible = false
+		fs.BackgroundColor3 = targetColor
+		fs.TextColor3 = targetColor2
+		frm4.Text = "Theme: Normal"
+		frm5.Visible = false
+		grs2.Visible = false
+		frm.BackgroundTransparency = 0.5
+	
+		-- 2. Nastavení barev panelů
+		frm2.TextColor3 = targetColor2
+		frm2.BackgroundColor3 = bgGray
+		frm4.TextColor3 = targetColor2
+		frm5.BackgroundColor3 = targetColor
+		frm1.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
+		bar.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
+		br.BackgroundColor3 = targetColor
+		frm.BackgroundColor3 = bgGray
+	
+		-- 3. OPTIMALIZOVANÝ CYKLUS (Žádné lagy)
+		-- Projdeme složku jen jednou a změníme vše najednou
+		for _, child in ipairs(folder:GetChildren()) do
+			if child:IsA("TextButton") or child:IsA("TextBox") or child:IsA("TextLabel") then 
+				child.BackgroundColor3 = targetColor
+				child.TextColor3 = targetColor2
+			end
+		end
+	
+		-- 4. SKRYTÍ KRYSTALŮ
+		for _, crystal in ipairs(folder2:GetChildren()) do
+			if crystal:IsA("Frame") then 
+				crystal.Visible = false
+			end
+		end
+	
+		-- 5. LOGIKA OBLOHY (Lighting)
 		for _, child in pairs(Lighting:GetChildren()) do
 			if child:IsA("Sky") or child:IsA("Atmosphere") or child:IsA("SunRaysEffect") then
 				child:Destroy()
 			end
 		end
 	
-		-- 2. Vytvoření tvé růžové oblohy
 		local newSky = Instance.new("Sky")
 		newSky.Name = "CustomSky"
-		newSky.Parent = Lighting
-	
 		newSky.SkyboxBk = skyConfig.Back
 		newSky.SkyboxDn = skyConfig.Down
 		newSky.SkyboxFt = skyConfig.Front
 		newSky.SkyboxLf = skyConfig.Left
 		newSky.SkyboxRt = skyConfig.Right
 		newSky.SkyboxUp = skyConfig.Up
-	
-		-- 3. Zneviditelnění slunce (textura zmizí, ale světlo zůstane)
 		newSky.SunTextureId = "rbxasset://sky/sun.jpg"
 		newSky.SunAngularSize = 4
+		newSky.Parent = Lighting
 	
-		-- 4. Zachování světla (Brightness), aby mapa nebyla tmavá
-		Lighting.Brightness = 2 -- Můžeš zvýšit pro více světla
-		Lighting.GlobalShadows = true -- Ponechá stíny pro hloubku
-		Lighting.OutdoorAmbient = Color3.fromRGB(150, 150, 150) -- Zesvětlí venkovní prostory
-	
-		-- 5. Taktické vyčištění vizuálu
+		Lighting.Brightness = 2
+		Lighting.GlobalShadows = true
+		Lighting.OutdoorAmbient = Color3.fromRGB(150, 150, 150)
 		Lighting.FogEnd = 100000 
 		Lighting.ClockTime = 14
 	end)
+	
+	-- EFEKTY TLAČÍTKA
+	but.MouseEnter:Connect(function()
+		but:TweenSize(UDim2.new(0.982, 0, 0.239, 0), "InOut", "Sine", 0.2, true)
+	end)
+	
+	but.MouseLeave:Connect(function()
+		but:TweenSize(UDim2.new(0.942, 0, 0.192, 0), "InOut", "Sine", 0.2, true)
+	end)
+	
 end;
 task.spawn(C_136);
 -- StarterGui.HHHHAAAACCCCKKKK.GUI.GUI3.amt.amt
 local function C_13b()
 local script = G2L["13b"];
+	-- REFERENCE
 	local frm1 = script.Parent.Parent.Parent.thm
 	local frm2 = frm1.shw
 	local frm4 = frm1.TextLabel2
 	local frm5 = frm1.Parent.GUI3
 	local bar = script.Parent.Parent.Parent.Bar
 	local fs = script.Parent.Parent.Parent.Parent.fs
-	
 	local folder2 = script.Parent.Parent.Parent.crystals
 	local br = script.Parent.Parent.Parent.Parent.GUI.txbas.barr
 	local frm = script.Parent.Parent.Parent.Parent.GUI
 	local but = script.Parent.Parent.amt
 	local folder = script.Parent.Parent.Parent.Parent.GUI.txbas
-	local targetColor = Color3.fromRGB(17, 17, 17)
-	local targetColor2 = Color3.fromRGB(104, 0, 108)
 	local grs = frm.Parent.GUI5.grs
 	local grs12 = frm.txbas.GUI12
 	
-	but.Activated:Connect(function()
-	grs12.Visible = false
-	frm.BackgroundTransparency = 0.5
-	fs.BackgroundColor3 = targetColor
-	fs.TextColor3 = targetColor2
-	frm4.Text = "Theme: " .. "Black Amethyst"
-	frm5.Visible = false
-	grs.Visible = false
-	frm2.TextColor3 = Color3.fromRGB(104, 0, 108)
-	frm2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-	frm4.TextColor3 = Color3.fromRGB(104, 0, 108)
-	frm5.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-	frm1.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-	bar.BackgroundColor3 = Color3.fromRGB(8, 8, 8)
-	br.BackgroundColor3 = Color3.fromRGB(104, 0, 108)
-	frm.BackgroundColor3 = Color3.fromRGB(8, 8, 8)
-	for _, child in ipairs(folder:GetChildren()) do
-		if child:IsA("TextButton") then 
-			child.BackgroundColor3 = targetColor
-			child.TextColor3 = targetColor2
-				for _, child in ipairs(folder:GetChildren()) do
-					if child:IsA("TextBox") then 
-						child.BackgroundColor3 = targetColor
-						child.TextColor3 = targetColor2
-							for _, child in ipairs(folder:GetChildren()) do
-								if child:IsA("TextLabel") then 
-									child.BackgroundColor3 = targetColor
-									child.TextColor3 = targetColor2
-										for _, child in ipairs(folder:GetChildren()) do
-											if child:IsA("TextLabel") then 
-												child.BackgroundColor3 = targetColor
-													for _, child in ipairs(folder2	:GetChildren()) do
-														if child:IsA("Frame") then 
-															child.Visible = true
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	end)
+	-- NASTAVENÍ BAREV (Black Amethyst)
+	local targetColor = Color3.fromRGB(17, 17, 17)
+	local targetColor2 = Color3.fromRGB(104, 0, 108)
+	local darkBg = Color3.fromRGB(8, 8, 8)
 	
-	
-	but.MouseEnter:Connect(function()
-		but:TweenSize(UDim2.new(0.982, 0, 0.239, 0),
-			"InOut",
-			"Sine",
-			0.1,
-			true
-		)
-	end)
-	
-	but.MouseLeave:Connect(function()
-		but:TweenSize(UDim2.new(0.942, 0, 0.192, 0),
-			"InOut",
-			"Sine",
-			0.1,
-			true
-		)
-	end)
-	
-	local button = but
+	-- KONFIGURACE OBLOHY
 	local Lighting = game:GetService("Lighting")
-	
 	local skyConfig = {
 		Back  = "http://www.roblox.com/asset/?id=17279854976",
 		Down  = "http://www.roblox.com/asset/?id=17279856318",
@@ -6164,44 +6078,83 @@ local script = G2L["13b"];
 		Up    = "http://www.roblox.com/asset/?id=17279864507"
 	}
 	
-	button.MouseButton1Click:Connect(function()
-		-- 1. Odstranění starých prvků, které způsobují "glow" (Atmosféra a SunRays)
+	-- HLAVNÍ FUNKCE
+	but.Activated:Connect(function()
+		-- 1. Reset viditelnosti a základní barvy
+		grs12.Visible = false
+		frm.BackgroundTransparency = 0.5
+		fs.BackgroundColor3 = targetColor
+		fs.TextColor3 = targetColor2
+		frm4.Text = "Theme: Black Amethyst"
+		frm5.Visible = false
+		grs.Visible = false
+	
+		-- 2. Barvy panelů
+		frm2.TextColor3 = targetColor2
+		frm2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		frm4.TextColor3 = targetColor2
+		frm5.BackgroundColor3 = targetColor
+		frm1.BackgroundColor3 = targetColor
+		bar.BackgroundColor3 = darkBg
+		br.BackgroundColor3 = targetColor2
+		frm.BackgroundColor3 = darkBg
+	
+		-- 3. OPTIMALIZOVANÝ PRŮCHOD SLOŽKOU (Oprava lagů)
+		for _, child in ipairs(folder:GetChildren()) do
+			if child:IsA("TextButton") or child:IsA("TextBox") or child:IsA("TextLabel") then 
+				child.BackgroundColor3 = targetColor
+				child.TextColor3 = targetColor2
+			end
+		end
+	
+		-- 4. KRYSTALY (Zde nastaveno na TRUE)
+		for _, crystal in ipairs(folder2:GetChildren()) do
+			if crystal:IsA("Frame") then 
+				crystal.Visible = true
+			end
+		end
+	
+		-- 5. LIGHTING (OBLOHA)
 		for _, child in pairs(Lighting:GetChildren()) do
 			if child:IsA("Sky") or child:IsA("Atmosphere") or child:IsA("SunRaysEffect") then
 				child:Destroy()
 			end
 		end
 	
-		-- 2. Vytvoření tvé růžové oblohy
 		local newSky = Instance.new("Sky")
 		newSky.Name = "CustomSky"
-		newSky.Parent = Lighting
-	
 		newSky.SkyboxBk = skyConfig.Back
 		newSky.SkyboxDn = skyConfig.Down
 		newSky.SkyboxFt = skyConfig.Front
 		newSky.SkyboxLf = skyConfig.Left
 		newSky.SkyboxRt = skyConfig.Right
 		newSky.SkyboxUp = skyConfig.Up
-	
-		-- 3. Zneviditelnění slunce (textura zmizí, ale světlo zůstane)
 		newSky.SunTextureId = ""
 		newSky.SunAngularSize = 0
+		newSky.Parent = Lighting
 	
-		-- 4. Zachování světla (Brightness), aby mapa nebyla tmavá
-		Lighting.Brightness = 2 -- Můžeš zvýšit pro více světla
-		Lighting.GlobalShadows = true -- Ponechá stíny pro hloubku
-		Lighting.OutdoorAmbient = Color3.fromRGB(150, 150, 150) -- Zesvětlí venkovní prostory
-	
-		-- 5. Taktické vyčištění vizuálu
+		Lighting.Brightness = 2
+		Lighting.GlobalShadows = true
+		Lighting.OutdoorAmbient = Color3.fromRGB(150, 150, 150)
 		Lighting.FogEnd = 100000 
 		Lighting.ClockTime = 14
 	end)
+	
+	-- ANIMACE TLAČÍTKA
+	but.MouseEnter:Connect(function()
+		but:TweenSize(UDim2.new(0.982, 0, 0.239, 0), "InOut", "Sine", 0.1, true)
+	end)
+	
+	but.MouseLeave:Connect(function()
+		but:TweenSize(UDim2.new(0.942, 0, 0.192, 0), "InOut", "Sine", 0.1, true)
+	end)
+	
 end;
 task.spawn(C_13b);
 -- StarterGui.HHHHAAAACCCCKKKK.GUI.GUI3.sky.sky
 local function C_140()
 local script = G2L["140"];
+	-- REFERENCE
 	local frm1 = script.Parent.Parent.Parent.thm
 	local frm2 = frm1.shw
 	local frm4 = frm1.TextLabel2
@@ -6211,80 +6164,17 @@ local script = G2L["140"];
 	local folder2 = script.Parent.Parent.Parent.crystals
 	local br = script.Parent.Parent.Parent.Parent.GUI.txbas.barr
 	local frm = script.Parent.Parent.Parent.Parent.GUI
-	local but = script.Parent.Parent.sky
+	local but = script.Parent.Parent.sky -- Tlačítko pro toto téma
 	local folder = script.Parent.Parent.Parent.Parent.GUI.txbas
-	local targetColor = Color3.fromRGB(0, 120, 250)
-	local targetColor2 = Color3.fromRGB(0, 0, 0)
 	local grs2 = frm.Parent.GUI5.grs
 	local grs12 = frm.txbas.GUI12
 	
-	but.Activated:Connect(function()
-		grs12.Visible = true
-		fs.BackgroundColor3 = targetColor
-		fs.TextColor3 = targetColor2
-		frm4.Text = "Theme: " .. "WhiteGreenSkyblue"
-		frm5.Visible = false
-		grs2.Visible = false
-		frm.BackgroundTransparency = 0.5
-		frm2.TextColor3 = Color3.fromRGB(targetColor2)
-		frm2.BackgroundColor3 = Color3.fromRGB(0, 150, 250)
-		frm4.TextColor3 = Color3.fromRGB(targetColor2)
-		frm5.BackgroundColor3 = Color3.fromRGB(0, 200, 250)
-		frm1.BackgroundColor3 = Color3.fromRGB(0, 130, 250)
-		bar.BackgroundColor3 = Color3.fromRGB(100, 230, 250)
-		br.BackgroundColor3 = Color3.fromRGB(0, 143, 252)
-		frm.BackgroundColor3 = Color3.fromRGB(255 ,255 ,255)
-		for _, child in ipairs(folder:GetChildren()) do
-			if child:IsA("TextButton") then 
-				child.BackgroundColor3 = targetColor
-				child.TextColor3 = targetColor2
-				for _, child in ipairs(folder:GetChildren()) do
-					if child:IsA("TextBox") then 
-						child.BackgroundColor3 = targetColor
-						child.TextColor3 = targetColor2
-						for _, child in ipairs(folder:GetChildren()) do
-							if child:IsA("TextLabel") then 
-								child.BackgroundColor3 = targetColor
-								child.TextColor3 = targetColor2
-								for _, child in ipairs(folder:GetChildren()) do
-									if child:IsA("TextLabel") then 
-										child.BackgroundColor3 = targetColor
-										for _, child in ipairs(folder2	:GetChildren()) do
-											if child:IsA("Frame") then 
-												child.Visible = false
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	end)
+	-- NASTAVENÍ BAREV (WhiteGreenSkyblue)
+	local targetColor = Color3.fromRGB(0, 120, 250)
+	local targetColor2 = Color3.fromRGB(0, 0, 0)
 	
-	but.MouseEnter:Connect(function()
-		but:TweenSize(UDim2.new(0.982, 0, 0.239, 0),
-			"InOut",
-			"Sine",
-			0.1,
-			true
-		)
-	end)
-	
-	but.MouseLeave:Connect(function()
-		but:TweenSize(UDim2.new(0.942, 0, 0.192, 0),
-			"InOut",
-			"Sine",
-			0.1,
-			true
-		)
-	end)
-	
-	local button = but
+	-- KONFIGURACE OBLOHY
 	local Lighting = game:GetService("Lighting")
-	
 	local skyConfig = {
 		Back  = "http://www.roblox.com/asset/?id=245710263",
 		Down  = "http://www.roblox.com/asset/?id=245710630",
@@ -6294,46 +6184,83 @@ local script = G2L["140"];
 		Up    = "http://www.roblox.com/asset/?id=245710496"
 	}
 	
-	button.MouseButton1Click:Connect(function()
-		-- 1. Odstranění starých prvků, které způsobují "glow" (Atmosféra a SunRays)
+	-- HLAVNÍ FUNKCE PŘI AKTIVACI
+	but.Activated:Connect(function()
+		-- 1. Nastavení viditelnosti a textu
+		grs12.Visible = true
+		fs.BackgroundColor3 = targetColor
+		fs.TextColor3 = targetColor2
+		frm4.Text = "Theme: WhiteGreenSkyblue"
+		frm5.Visible = false
+		grs2.Visible = false
+		frm.BackgroundTransparency = 0.5
+	
+		-- 2. Barvy panelů (opraveno - nepoužívat Color3.fromRGB na již existující Color3)
+		frm2.TextColor3 = targetColor2
+		frm2.BackgroundColor3 = Color3.fromRGB(0, 150, 250)
+		frm4.TextColor3 = targetColor2
+		frm5.BackgroundColor3 = Color3.fromRGB(0, 200, 250)
+		frm1.BackgroundColor3 = Color3.fromRGB(0, 130, 250)
+		bar.BackgroundColor3 = Color3.fromRGB(100, 230, 250)
+		br.BackgroundColor3 = Color3.fromRGB(0, 143, 252)
+		frm.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	
+		-- 3. OPTIMALIZOVANÝ PRŮCHOD SLOŽKOU (Blesková rychlost)
+		for _, child in ipairs(folder:GetChildren()) do
+			if child:IsA("TextButton") or child:IsA("TextBox") or child:IsA("TextLabel") then 
+				child.BackgroundColor3 = targetColor
+				child.TextColor3 = targetColor2
+			end
+		end
+	
+		-- 4. SKRYTÍ KRYSTALŮ
+		for _, crystal in ipairs(folder2:GetChildren()) do
+			if crystal:IsA("Frame") then 
+				crystal.Visible = false
+			end
+		end
+	
+		-- 5. ÚPRAVA LIGHTING (OBLOHA)
 		for _, child in pairs(Lighting:GetChildren()) do
 			if child:IsA("Sky") or child:IsA("Atmosphere") or child:IsA("SunRaysEffect") then
 				child:Destroy()
 			end
 		end
 	
-		-- 2. Vytvoření tvé růžové oblohy
 		local newSky = Instance.new("Sky")
 		newSky.Name = "CustomSky"
-		newSky.Parent = Lighting
-	
 		newSky.SkyboxBk = skyConfig.Back
 		newSky.SkyboxDn = skyConfig.Down
 		newSky.SkyboxFt = skyConfig.Front
 		newSky.SkyboxLf = skyConfig.Left
 		newSky.SkyboxRt = skyConfig.Right
 		newSky.SkyboxUp = skyConfig.Up
-	
-		-- 3. Zneviditelnění slunce (textura zmizí, ale světlo zůstane)
 		newSky.SunTextureId = "rbxasset://sky/sun.jpg"
 		newSky.SunAngularSize = 21
+		newSky.Parent = Lighting
 	
-		-- 4. Zachování světla (Brightness), aby mapa nebyla tmavá
-		Lighting.Brightness = 2 -- Můžeš zvýšit pro více světla
-		Lighting.GlobalShadows = true -- Ponechá stíny pro hloubku
-		Lighting.OutdoorAmbient = Color3.fromRGB(150, 150, 150) -- Zesvětlí venkovní prostory
-	
-		-- 5. Taktické vyčištění vizuálu
+		Lighting.Brightness = 2
+		Lighting.GlobalShadows = true
+		Lighting.OutdoorAmbient = Color3.fromRGB(150, 150, 150)
 		Lighting.FogEnd = 100000 
 		Lighting.ClockTime = 14
-	
-		print("Slunce je neviditelné, ale světlo v mapě zůstalo!")
 	end)
+	
+	-- ANIMACE TLAČÍTKA
+	but.MouseEnter:Connect(function()
+		but:TweenSize(UDim2.new(0.982, 0, 0.239, 0), "InOut", "Sine", 0.1, true)
+	end)
+	
+	but.MouseLeave:Connect(function()
+		but:TweenSize(UDim2.new(0.942, 0, 0.192, 0), "InOut", "Sine", 0.1, true)
+	end)
+	
 end;
 task.spawn(C_140);
 -- StarterGui.HHHHAAAACCCCKKKK.GUI.GUI3.monblue.monblue
 local function C_145()
 local script = G2L["145"];
+	-- REFERENCE
 	local frm1 = script.Parent.Parent.Parent.thm
 	local frm2 = frm1.shw
 	local frm4 = frm1.TextLabel2
@@ -6345,119 +6272,95 @@ local script = G2L["145"];
 	local frm = script.Parent.Parent.Parent.Parent.GUI
 	local but = script.Parent.Parent.monblue
 	local folder = script.Parent.Parent.Parent.Parent.GUI.txbas
-	local targetColor = Color3.fromRGB(50, 50, 50)
-	local targetColor2 = Color3.fromRGB(100, 100, 100)
 	local grs = frm.Parent.GUI5.grs
 	local grs12 = frm.txbas.GUI12
 	
+	-- NASTAVENÍ BAREV
+	local targetColor = Color3.fromRGB(50, 50, 50)
+	local targetColor2 = Color3.fromRGB(150, 150, 150)
+	local darkBg = Color3.fromRGB(6, 6, 9)
+	local panelBg = Color3.fromRGB(30, 30, 30)
+	
+	-- KONFIGURACE OBLOHY
+	local Lighting = game:GetService("Lighting")
+	local skyConfig = {
+		Back  = "http://www.roblox.com",
+		Down  = "http://www.roblox.com",
+		Front = "http://www.roblox.com",
+		Left  = "http://www.roblox.com",
+		Right = "http://www.roblox.com",
+		Up    = "http://www.roblox.com"
+	}
+	
+	-- FUNKCE PRO ZMĚNU THEME (Bez lagů)
 	but.Activated:Connect(function()
+		-- Základní UI prvky
 		grs12.Visible = false
 		fs.BackgroundColor3 = targetColor
 		fs.TextColor3 = targetColor2
-		frm4.Text = "Theme: " .. "GraySkyNight"
+		frm4.Text = "Theme: GraySkyNight"
 		frm5.Visible = false
 		grs.Visible = true
 		frm.BackgroundTransparency = 0
-		frm2.TextColor3 = Color3.fromRGB(targetColor2)
-		frm2.BackgroundColor3 = Color3.fromRGB(6, 6, 9)
-		frm4.TextColor3 = Color3.fromRGB(targetColor2)
-		frm5.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-		frm1.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-		bar.BackgroundColor3 = Color3.fromRGB(6, 6, 9)
-		br.BackgroundColor3 = Color3.fromRGB(6, 6, 9)
+	
+		-- Nastavení barev panelů
+		frm2.TextColor3 = targetColor2
+		frm2.BackgroundColor3 = darkBg
+		frm4.TextColor3 = targetColor2
+		frm5.BackgroundColor3 = panelBg
+		frm1.BackgroundColor3 = panelBg
+		bar.BackgroundColor3 = darkBg
+		br.BackgroundColor3 = darkBg
 		frm.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-		for _, child1 in ipairs(folder:GetChildren()) do
-			if child1:IsA("TextButton") then 
-				child1.BackgroundColor3 = targetColor
-				child1.TextColor3 = targetColor2
-				for _, child2 in ipairs(folder:GetChildren()) do
-					if child2:IsA("TextBox") then 
-						child2.BackgroundColor3 = targetColor
-						child2.TextColor3 = targetColor2
-						for _, child3 in ipairs(folder:GetChildren()) do
-							if child3:IsA("TextLabel") then 
-								child3.TextColor3 = targetColor2
-								child3.BackgroundColor3 = targetColor
-								for _, child4 in ipairs(folder:GetChildren()) do
-									if child4:IsA("TextLabel") then 
-										child4.TextColor3 = targetColor2
-										for _, child4 in ipairs(folder2	:GetChildren()) do
-											if child4:IsA("Frame") then 
-												child4.Visible = false
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
+	
+		-- OPTIMALIZOVANÝ CYKLUS: Projde složku jen jednou
+		for _, child in ipairs(folder:GetChildren()) do
+			if child:IsA("TextButton") or child:IsA("TextBox") or child:IsA("TextLabel") then 
+				child.BackgroundColor3 = targetColor
+				child.TextColor3 = targetColor2
 			end
 		end
-	end)
 	
-	but.MouseEnter:Connect(function()
-		but:TweenSize(UDim2.new(0.982, 0, 0.239, 0),
-			"InOut",
-			"Sine",
-			0.1,
-			true
-		)
-	end)
+		-- CYKLUS PRO KRYSTALY
+		for _, crystal in ipairs(folder2:GetChildren()) do
+			if crystal:IsA("Frame") then 
+				crystal.Visible = false
+			end
+		end
 	
-	but.MouseLeave:Connect(function()
-		but:TweenSize(UDim2.new(0.942, 0, 0.192, 0),
-			"InOut",
-			"Sine",
-			0.1,
-			true
-		)
-	end)
-	
-	local button = but
-	local Lighting = game:GetService("Lighting")
-	
-	local skyConfig = {
-		Back  = "http://www.roblox.com/asset/?id=4498828382",
-		Down  = "http://www.roblox.com/asset/?id=4498828812",
-		Front = "http://www.roblox.com/asset/?id=4498829917",
-		Left  = "http://www.roblox.com/asset/?id=4498830911",
-		Right = "http://www.roblox.com/asset/?id=4498830417",
-		Up    = "http://www.roblox.com/asset/?id=4498831746"
-	}
-	
-	button.MouseButton1Click:Connect(function()
-		-- 1. Odstranění starých prvků, které způsobují "glow" (Atmosféra a SunRays)
+		-- LOGIKA OBLOHY (Lighting)
 		for _, child in pairs(Lighting:GetChildren()) do
 			if child:IsA("Sky") or child:IsA("Atmosphere") or child:IsA("SunRaysEffect") then
 				child:Destroy()
 			end
 		end
 	
-		-- 2. Vytvoření tvé růžové oblohy
 		local newSky = Instance.new("Sky")
 		newSky.Name = "CustomSky"
-		newSky.Parent = Lighting
-	
 		newSky.SkyboxBk = skyConfig.Back
 		newSky.SkyboxDn = skyConfig.Down
 		newSky.SkyboxFt = skyConfig.Front
 		newSky.SkyboxLf = skyConfig.Left
 		newSky.SkyboxRt = skyConfig.Right
 		newSky.SkyboxUp = skyConfig.Up
-	
-		-- 3. Zneviditelnění slunce (textura zmizí, ale světlo zůstane)
 		newSky.SunTextureId = ""
 		newSky.SunAngularSize = 0
+		newSky.Parent = Lighting
 	
-		-- 4. Zachování světla (Brightness), aby mapa nebyla tmavá
-		Lighting.Brightness = 2 -- Můžeš zvýšit pro více světla
-		Lighting.GlobalShadows = true -- Ponechá stíny pro hloubku
-		Lighting.OutdoorAmbient = Color3.fromRGB(150, 150, 150) -- Zesvětlí venkovní prostory
-	
-		-- 5. Taktické vyčištění vizuálu
+		Lighting.Brightness = 2
+		Lighting.GlobalShadows = true
+		Lighting.OutdoorAmbient = Color3.fromRGB(150, 150, 150)
 		Lighting.FogEnd = 100000 
 		Lighting.ClockTime = 14
+	end)
+	
+	-- TWEEN EFEKTY PRO TLAČÍTKO
+	but.MouseEnter:Connect(function()
+		but:TweenSize(UDim2.new(0.982, 0, 0.239, 0), "InOut", "Sine", 0.1, true)
+	end)
+	
+	but.MouseLeave:Connect(function()
+		but:TweenSize(UDim2.new(0.942, 0, 0.192, 0), "InOut", "Sine", 0.1, true)
 	end)
 	
 end;
