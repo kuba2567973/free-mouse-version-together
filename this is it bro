@@ -69,8 +69,8 @@ G2L["6"] = Instance.new("Frame", G2L["1"]);
 G2L["6"]["ZIndex"] = 6;
 G2L["6"]["BorderSizePixel"] = 0;
 G2L["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["6"]["Size"] = UDim2.new(0.54076, 0, 0.6862, 0);
-G2L["6"]["Position"] = UDim2.new(0.22975, 0, 0.17335, 0);
+G2L["6"]["Size"] = UDim2.new(0.6103, 0, 0.68086, 0);
+G2L["6"]["Position"] = UDim2.new(0.19462, 0, 0.1787, 0);
 G2L["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["6"]["Name"] = [[GUI5]];
 G2L["6"]["BackgroundTransparency"] = 1;
@@ -88,12 +88,11 @@ G2L["8"]["CornerRadius"] = UDim.new(0.02, 0);
 
 -- StarterGui.HHHHAAAACCCCKKKK.GUI5.grs
 G2L["9"] = Instance.new("Frame", G2L["6"]);
-G2L["9"]["Visible"] = false;
 G2L["9"]["ZIndex"] = 4;
 G2L["9"]["BorderSizePixel"] = 0;
 G2L["9"]["BackgroundColor3"] = Color3.fromRGB(28, 37, 27);
-G2L["9"]["Size"] = UDim2.new(1.00194, 0, 0.28553, 0);
-G2L["9"]["Position"] = UDim2.new(-0.0013, 0, 0.71447, 0);
+G2L["9"]["Size"] = UDim2.new(1.00075, 0, 0.29332, 0);
+G2L["9"]["Position"] = UDim2.new(0, 0, 0.71447, 0);
 G2L["9"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["9"]["Name"] = [[grs]];
 G2L["9"]["BackgroundTransparency"] = 1;
@@ -111,12 +110,11 @@ G2L["b"]["BorderSizePixel"] = 0;
 G2L["b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["b"]["ImageTransparency"] = 0.49;
 G2L["b"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["b"]["Image"] = [[rbxassetid://70725559734526]];
-G2L["b"]["Size"] = UDim2.new(1, 0, 3.88358, 0);
+G2L["b"]["Size"] = UDim2.new(1, 0, 3.81435, 0);
 G2L["b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["b"]["BackgroundTransparency"] = 1;
 G2L["b"]["Name"] = [[a]];
-G2L["b"]["Position"] = UDim2.new(0.5, 0, -0.94906, 0);
+G2L["b"]["Position"] = UDim2.new(0.5, 0, -0.90099, 0);
 
 
 -- StarterGui.HHHHAAAACCCCKKKK.GUI5.grs.a.UICorner
@@ -179,8 +177,8 @@ G2L["12"] = Instance.new("Frame", G2L["1"]);
 G2L["12"]["ZIndex"] = 3;
 G2L["12"]["BorderSizePixel"] = 0;
 G2L["12"]["BackgroundColor3"] = Color3.fromRGB(95, 95, 95);
-G2L["12"]["Size"] = UDim2.new(0.54076, 0, 0.6862, 0);
-G2L["12"]["Position"] = UDim2.new(0.22921, 0, 0.18012, 0);
+G2L["12"]["Size"] = UDim2.new(0.61075, 0, 0.6862, 0);
+G2L["12"]["Position"] = UDim2.new(0.19462, 0, 0.1787, 0);
 G2L["12"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["12"]["Name"] = [[GUI]];
 G2L["12"]["BackgroundTransparency"] = 0.5;
@@ -699,6 +697,7 @@ G2L["4a"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
 -- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.Gravitttttty
 G2L["4b"] = Instance.new("TextBox", G2L["1d"]);
+G2L["4b"]["CursorPosition"] = -1;
 G2L["4b"]["Name"] = [[Gravitttttty]];
 G2L["4b"]["ZIndex"] = 3;
 G2L["4b"]["BorderSizePixel"] = 0;
@@ -1970,6 +1969,7 @@ G2L["ca"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
 -- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.EsOut
 G2L["cb"] = Instance.new("TextBox", G2L["1d"]);
+G2L["cb"]["CursorPosition"] = -1;
 G2L["cb"]["Name"] = [[EsOut]];
 G2L["cb"]["ZIndex"] = 4;
 G2L["cb"]["BorderSizePixel"] = 0;
@@ -2050,6 +2050,7 @@ G2L["d1"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
 -- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.JumpPowweeer
 G2L["d2"] = Instance.new("TextBox", G2L["1d"]);
+G2L["d2"]["CursorPosition"] = -1;
 G2L["d2"]["Name"] = [[JumpPowweeer]];
 G2L["d2"]["ZIndex"] = 4;
 G2L["d2"]["BorderSizePixel"] = 0;
@@ -3046,7 +3047,6 @@ G2L["134"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
 -- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.GUI12
 G2L["135"] = Instance.new("Frame", G2L["1d"]);
-G2L["135"]["Visible"] = false;
 G2L["135"]["ZIndex"] = 2;
 G2L["135"]["BorderSizePixel"] = 0;
 G2L["135"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
@@ -3068,11 +3068,10 @@ G2L["137"]["BorderSizePixel"] = 0;
 G2L["137"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["137"]["ImageTransparency"] = 0.32;
 G2L["137"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["137"]["Image"] = [[rbxassetid://114389652990094]];
-G2L["137"]["Size"] = UDim2.new(1, 0, 1.10838, 0);
+G2L["137"]["Size"] = UDim2.new(1.00132, 0, 1.11711, 0);
 G2L["137"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["137"]["BackgroundTransparency"] = 1;
-G2L["137"]["Position"] = UDim2.new(0.5, 0, 0.44581, 0);
+G2L["137"]["Position"] = UDim2.new(0.49934, 0, 0.45018, 0);
 
 
 -- StarterGui.HHHHAAAACCCCKKKK.GUI.txbas.GUI12.ImageLabel.UICorner
@@ -6928,10 +6927,9 @@ local script = G2L["164"];
 	local grs2 = frm.Parent.GUI5.grs
 	local grs12 = frm.txbas.GUI12
 	local imag = script.Parent.Parent.Parent.Parent.hltbar.bar.imag
-	-- NASTAVENÍ BAREV (WhiteGreenSkyblue)
 	local targetColor = Color3.fromRGB(0, 120, 250)
 	local targetColor2 = Color3.fromRGB(0, 0, 0)
-	
+	local imag2 = script.Parent.Parent.Parent.txbas.GUI12.ImageLabel
 	-- KONFIGURACE OBLOHY
 	local Lighting = game:GetService("Lighting")
 	local skyConfig = {
@@ -6945,11 +6943,13 @@ local script = G2L["164"];
 	
 	-- HLAVNÍ FUNKCE PŘI AKTIVACI
 	but.Activated:Connect(function()
-		imag.Image = "rbxassetid://114389652990094"
+		imag.Image = "rbxassetid://77721644316711"
+		task.wait(0.05)
+		imag2.Image = "rbxassetid://84167216363777"
 		grs12.Visible = true
 		fs.BackgroundColor3 = targetColor
 		fs.TextColor3 = targetColor2
-		frm4.Text = "Theme: WhiteGreenSkyblue"
+		frm4.Text = "Theme: Frutiger Aero"
 		frm5.Visible = false
 		grs2.Visible = false
 		frm.BackgroundTransparency = 0.5
